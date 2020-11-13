@@ -48,15 +48,15 @@ echo -n -e "${YELLOW}Input Docker Container Name:${NC}"
 echo -n -e "${YELLOW}Input RPC port number [default: $RPCPORT]:${NC}"
 #read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=9009 ; fi
-RPCPORT=$ANSWER
+#RPCPORT=$ANSWER
 echo -n -e "${YELLOW}Input P2P port number [default: $P2PPORT]:${NC}"
 #read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40404 ; fi
-P2PPORT=$ANSWER
+#P2PPORT=$ANSWER
 echo -n -e "${YELLOW}Input IPFS port number [default: $IPFSPORT]:${NC}"
 #read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40405 ; fi
-IPFSPORT=$ANSWER
+#IPFSPORT=$ANSWER
 
 if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else cd $IDENAPATH && git clone $IDENAGO; fi
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
