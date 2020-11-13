@@ -1,5 +1,5 @@
-FROM ubuntu:20.04
-#FROM :16.10
+FROM ubuntu:16.10
+#FROM debian:stretch-slim
 MAINTAINER postarc <postarc@nm.ru>
 
 ARG CONTAINER_TIMEZONE=Europe/Moscow
