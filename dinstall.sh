@@ -23,7 +23,7 @@ NC='\033[0m'
 MAG='\e[1;35m'
 
 CURRENTDIR=$(pwd)
-PATH="/opt/idena/bin:${PATH}" 
+SHELLPATH=$(dirname "$0")
 
 #while [ -n "$(sudo lsof -i -s TCP:LISTEN -P -n | grep $RPCPORT)" ]
 #do
@@ -42,8 +42,6 @@ PATH="/opt/idena/bin:${PATH}"
 
 apt update
 apt install -y docker.io
-
-mkdir -p /opt/idena/bin
 
 echo -n -e "${YELLOW}Input Docker Container Name:${NC}"
 read DOCKER_NAME
@@ -69,11 +67,8 @@ IPFSPORT=$ANSWER
 if [ -d $IDENAPATH ]; then git fetch; else git clone $IDENAGO; fi
 cd $IDENAPATH
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
-LATEST_TAG=${LATEST_TAG//v/}
-RELEASENAME+=$LATEST_TAG
-wget "$RELEASEPATH/v$LATEST_TAG/$RELEASENAME"
-chmod +x $RELEASENAME
-mv $RELEASENAME /opt/idena/bin/idena
+sudo sh -c "sed -i "s/.*ARG VERSION=.*/ARG VERSION= ${LATEST_TAG}/" $SHELLPATH/smb.conf"
+
 
 echo -e "${GREEN}Writing a startup script...${NC}"
 echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT -v $CURRENTDIR/data/$DOCKER_NAME:/root/.idena -w /root/.idena --restart unless-stopped --hostname idena --rm -it idena-go" >> $START_SCRIPT
