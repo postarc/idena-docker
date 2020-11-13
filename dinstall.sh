@@ -3,6 +3,8 @@
 
 CONTAINER_TIMEZONE=Europe/Moscow
 START_SCRIPT="docker-start.sh"
+IDENAGO="https://github.com/idena-network/idena-go.git"
+IDENAPATH="idena-go"
 RPCPORT=9009
 #PORT=50499
 P2PPORT=40404
