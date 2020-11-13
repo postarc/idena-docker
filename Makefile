@@ -1,9 +1,9 @@
 build:
 	@[ "${VERSION}" ] || ( echo ">> VERSION is not set"; exit 1 )
-	time docker build --no-cache --build-arg VERSION=$(VERSION) --build-arg CONTAINER_TIMEZONE=Europe/Moscow -t postarc/idena:$(VERSION) -t docker.io/postarc/idena:$(VERSION) -t docker.io/postarc/idena:latest .
+	time docker build --no-cache --build-arg VERSION=$(VERSION) --build-arg CONTAINER_TIMEZONE=Europe/Moscow -t ludx/idena:$(VERSION) -t docker.io/postarc/idena:$(VERSION) -t docker.io/postarc/idena:latest .
 
 run:
-	docker run -d --name idena -p 40403:40403 -p 40404:40404 -p 9009:9009 -v $(CURDIR)/data/idena:/root/.idena --restart unless-stopped --hostname idena docker.io/postarc/idena:latest
+	docker run -d --name idena -p 40403:40403 -p 40404:40404 -p 9009:9009 -v $(CURDIR)/data/idena:/root/.idena --restart unless-stopped --hostname idena docker.io/ludx/idena:latest
 
 pull:
 	docker pull docker.io/postarc/idena:latest
@@ -22,6 +22,5 @@ logs:
 
 push:
 	@[ "${VERSION}" ] || ( echo ">> VERSION is not set"; exit 1 )
-	docker push docker.io/postarc/idena:$(VERSION)
-	docker push docker.io/postarc/idena:latest
- 
+	docker push docker.io/ludx/idena:$(VERSION)
+	docker push docker.io/ludx/idena:latest
