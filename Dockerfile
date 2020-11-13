@@ -1,5 +1,4 @@
 FROM debian:stretch-slim
-#FROM ubuntu:16.10
 MAINTAINER postarc <postarc@nm.ru>
 
 ARG CONTAINER_TIMEZONE=Europe/Moscow
@@ -42,7 +41,7 @@ COPY docker-entrypoint.sh /opt/idena/bin/entrypoint.sh
 ENV PATH="/opt/idena/bin:${PATH}"
 RUN chmod +x /opt/idena/bin/*
 
-EXPOSE 40403 40404 9009
+#EXPOSE 40403 40404 9009
 
-ENTRYPOINT ["entrypoint.sh"]
-CMD ["idena"]
+#ENTRYPOINT ["entrypoint.sh"]
+#CMD ["idena"]
