@@ -45,7 +45,7 @@ apt install -y docker.io
 
 mkdir -p /opt/idena/bin
 
-echo -n -e "${YELLOW}Input Docker Name:${NC}"
+echo -n -e "${YELLOW}Input Docker Container Name:${NC}"
 read DOCKER_NAME
 echo -n -e "${YELLOW}Input RPC port number [default: $RPCPORT]:${NC}"
 read ANSWER
