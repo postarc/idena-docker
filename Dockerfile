@@ -3,7 +3,7 @@ FROM debian:stretch-slim
 MAINTAINER Juha Kovanen <juha@particl.io>
 
 ARG CONTAINER_TIMEZONE=Europe/Moscow
-ARG VERSION=0.13.3
+ARG VERSION=0.23.1
 
 ENV PATH=/opt/particl-${PARTICL_VERSION}/bin:$PATH
 
