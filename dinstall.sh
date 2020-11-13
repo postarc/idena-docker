@@ -68,7 +68,7 @@ if [ ! "$(docker images | grep postarc/idena)" ]; then docker build $SHELLPATH/ 
 cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
 echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT \
--v $(CURDIR)/data/idena:/root/.idena --restart unless-stopped --hostname idena postarc/idena:latest" >> $START_SCRIPT
+-v /root/data/idena:/root/.idena --restart unless-stopped --hostname idena postarc/idena:latest" >> $START_SCRIPT
 chmod +x $START_SCRIPT
 
 rm -rf idena-go
