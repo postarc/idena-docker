@@ -67,7 +67,8 @@ IPFSPORT=$ANSWER
 if [ -d $IDENAPATH ]; then git fetch; else git clone $IDENAGO; fi
 cd $IDENAPATH
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
-sudo sh -c "sed -i "s/.*ARG VERSION=.*/ARG VERSION= ${LATEST_TAG}/" $SHELLPATH/smb.conf"
+sed -i "s/.*ARG VERSION=.*/ARG VERSION= ${LATEST_TAG}/" $SHELLPATH/Dockerfile
+docker build $SHELLPATH/Dockerfile --tag postarc/idena:latest
 
 
 echo -e "${GREEN}Writing a startup script...${NC}"
