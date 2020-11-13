@@ -41,7 +41,7 @@ PATH="/opt/idena/bin:${PATH}"
 #done
 
 apt update
-apt install -y docker.io git
+apt install -y docker.io
 
 #echo ${CONTAINER_TIMEZONE} >/etc/timezone && \
 #    ln -sf /usr/share/zoneinfo/${CONTAINER_TIMEZONE} /etc/localtime && \
