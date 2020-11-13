@@ -70,3 +70,12 @@ echo -e "${GREEN}Writing a startup script...${NC}"
 echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT \
 -v $CURRENTDIR/data/$DOCKER_NAME:/root/.idena -w /root/.idena --restart unless-stopped --hostname idena \
 -it postarc/idena idena-go --config=/root/.idena/config.json" >> $START_SCRIPT
+
+rm -rf idena-go
+echo -e "${GREEN}Viewing logs:                         docker logs -f --tail 1000 idena${NC}"
+echo -e "${GREEN}Attach bash into running container :  docker exec -it idena bash -l${NC}" 
+
+if ! crontab -l | grep "$START_SCRIPT"; then
+  (crontab -l ; echo "@reboot $CURRENTDIR/$START_SCRIPT") | crontab -
+fi
+bash $CURRENTDIR/$START_SCRIPT
