@@ -2,10 +2,6 @@
 
 
 CONTAINER_TIMEZONE=Europe/Moscow
-IDENAGO="https://github.com/idena-network/idena-go.git"
-IDENAPATH="idena-go"
-RELEASEPATH="https://github.com/idena-network/idena-go/releases/download"
-RELEASENAME="idena-node-linux-"
 START_SCRIPT="docker-start.sh"
 RPCPORT=9009
 #PORT=50499
@@ -68,4 +64,4 @@ cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
 echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT \
 -v $CURRENTDIR/data/$DOCKER_NAME:/root/.idena -w /root/.idena --restart unless-stopped --hostname idena \
--it postarc/idena idena --config=/root/.idena/config.json" >> $START_SCRIPT
+-it postarc/idena idena-go --config=/root/.idena/config.json" >> $START_SCRIPT
