@@ -27,16 +27,16 @@ RUN cd /root \
         && mkdir -p idena \
         && cd idena \
         && wget https://github.com/idena-network/idena-go/releases/download/v${VERSION}/idena-node-linux-${VERSION} \
-        && cp -rf idena-node-linux-${VERSION} idena;
+        && cp -rf idena-node-linux-${VERSION} idena-go;
 
 RUN mkdir /root/.idena/
 VOLUME ["/root/.idena/"]
 
 RUN mkdir -p /opt/idena/bin \
-    && cp -rf /root/idena/idena /opt/idena/bin/ \
-    && rm -rf /root/idena
+    && cp -rf /root/idena/idena-go /opt/idena/bin/ \
+    && rm -rf /root/idena-go
 
-COPY docker-entrypoint.sh /opt/idena/bin/entrypoint.sh
+COPY config.json /root/.idena/config.json
 
 ENV PATH="/opt/idena/bin:${PATH}"
 RUN chmod +x /opt/idena/bin/*
