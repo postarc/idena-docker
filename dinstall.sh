@@ -66,6 +66,6 @@ docker build $SHELLPATH/Dockerfile --tag postarc/idena:latest
 
 cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
-echo -e "docker run -d --name $DOCKER_NAME  -p $IPADDRESS:$RPCPORT:$RPCPORT -p $IPADDRESS:$P2PPORT:$P2PPORT -p $IPADDRESS:$IPFSPORT:$IPFSPORT \
+echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT \
 -v $CURRENTDIR/data/$DOCKER_NAME:/root/.idena -w /root/.idena --restart unless-stopped --hostname idena \
 -it postarc/idena idena-go --config=/root/.idena/config.json" >> $START_SCRIPT
