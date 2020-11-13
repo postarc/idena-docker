@@ -58,18 +58,14 @@ read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40405 ; fi
 IPFSPORT=$ANSWER
 
-
-#echo $DOCKER_NAME >> /opt/idena/bin/docker-name
-#echo $RPCPORT >> /opt/idena/bin/rpc-port
-#echo $P2PPORT >> /opt/idena/bin/p2p-port
-#echo $IPFSPORT >> /opt/idena/bin/ipfs-port
-
 if [ -d $IDENAPATH ]; then git fetch; else git clone $IDENAGO; fi
 cd $IDENAPATH
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
 sed -i "s/.*ARG VERSION=.*/ARG VERSION= ${LATEST_TAG}/" $SHELLPATH/Dockerfile
 docker build $SHELLPATH/Dockerfile --tag postarc/idena:latest
 
-
+cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
-echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT -v $CURRENTDIR/data/$DOCKER_NAME:/root/.idena -w /root/.idena --restart unless-stopped --hostname idena --rm -it idena-go" >> $START_SCRIPT
+echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT \
+-v $CURRENTDIR/data/$DOCKER_NAME:/root/.idena -w /root/.idena --restart unless-stopped --hostname idena \
+-it postarc/idena idena --config=/root/.idena/config.json" >> $START_SCRIPT
