@@ -61,10 +61,10 @@ if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40405 ; fi
 IPFSPORT=$ANSWER
 
 
-echo $DOCKER_NAME >> /opt/idena/bin/docker-name
-echo $RPCPORT >> /opt/idena/bin/rpc-port
-echo $P2PPORT >> /opt/idena/bin/p2p-port
-echo $IPFSPORT >> /opt/idena/bin/ipfs-port
+#echo $DOCKER_NAME >> /opt/idena/bin/docker-name
+#echo $RPCPORT >> /opt/idena/bin/rpc-port
+#echo $P2PPORT >> /opt/idena/bin/p2p-port
+#echo $IPFSPORT >> /opt/idena/bin/ipfs-port
 
 if [ -d $IDENAPATH ]; then git fetch; else git clone $IDENAGO; fi
 cd $IDENAPATH
