@@ -1,4 +1,4 @@
-FROM debian:stretch-slim
+FROM postarc:idena
 #FROM ubuntu:16.10
 MAINTAINER postarc <postarc@nm.ru>
 
