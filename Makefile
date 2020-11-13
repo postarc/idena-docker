@@ -22,5 +22,5 @@ logs:
 
 push:
 	@[ "${VERSION}" ] || ( echo ">> VERSION is not set"; exit 1 )
-	docker push docker.io/ludx/idena:$(VERSION)
-	docker push docker.io/ludx/idena:latest
+	docker push docker.io/postarc/idena:$(VERSION)
+	docker push docker.io/postarc/idena:latest
