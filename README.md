@@ -23,7 +23,7 @@ Datadir will be located at ./data/idena, remember to make a backup of the keysto
 ## Usage
 
 ```sh
-make build VERSION=0.13.4   - builds new image, downloads the given VERSION from github
+make build VERSION=0.23.1   - builds new image, downloads the given VERSION from github
 make run                    - runs container until stopped, always starts the container when docker starts
 make start                  - starts container
 make stop                   - stops container
