@@ -63,7 +63,7 @@ LATEST_TAG=$(git tag --sort=-creatordate | head -1)
 LATEST_TAG=${LATEST_TAG//v/}
 cd $CURRENTDIR
 sed -i "s/.*ARG VERSION=.*/ARG VERSION=${LATEST_TAG}/" $SHELLPATH/Dockerfile
-docker build $SHELLPATH/Dockerfile --tag postarc/idena:latest
+docker build $SHELLPATH/ -t postarc/idena:latest
 
 cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
