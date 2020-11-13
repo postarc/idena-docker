@@ -58,8 +58,7 @@ echo -n -e "${YELLOW}Input IPFS port number [default: $IPFSPORT]:${NC}"
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40405 ; fi
 IPFSPORT=$ANSWER
 
-if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else git clone $IDENAGO; fi
-cd $IDENAPATH
+if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else cd $IDENAPATH && git clone $IDENAGO; fi
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
 cd $CURRENTDIR
 sed -i "s/.*ARG VERSION=.*/ARG VERSION= ${LATEST_TAG}/" $SHELLPATH/Dockerfile
