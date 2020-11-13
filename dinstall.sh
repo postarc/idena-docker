@@ -58,12 +58,12 @@ echo -n -e "${YELLOW}Input IPFS port number [default: $IPFSPORT]:${NC}"
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40405 ; fi
 #IPFSPORT=$ANSWER
 
-if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else cd $IDENAPATH && git clone $IDENAGO; fi
+if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else git clone $IDENAGO && cd $IDENAPATH; fi
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
 LATEST_TAG=${LATEST_TAG//v/}
 cd $CURRENTDIR
 sed -i "s/.*ARG VERSION=.*/ARG VERSION=${LATEST_TAG}/" $SHELLPATH/Dockerfile
-docker build $SHELLPATH/ -t postarc/idena:latest
+if [ ! $(docker images | grep postarc/idena) ]; then docker build $SHELLPATH/ -t postarc/idena:latest; fi
 
 cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
