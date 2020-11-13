@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 #FROM ubuntu:16.10
-MAINTAINER postarc <postarc@nm.ru>
+MAINTAINER Juha Kovanen <juha@particl.io>
 
 ARG CONTAINER_TIMEZONE=Europe/Moscow
 ARG VERSION=0.13.3
@@ -46,5 +46,3 @@ EXPOSE 40403 40404 9009
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["idena"]
-
- 
