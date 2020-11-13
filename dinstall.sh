@@ -11,6 +11,7 @@ P2PPORT=40404
 IPFSPORT=40405
 DOCKER_NAME="idena"
 
+
 #color
 BLUE="\033[0;34m"
 YELLOW="\033[0;33m"
@@ -23,7 +24,7 @@ MAG='\e[1;35m'
 
 CURRENTDIR=$(pwd)
 SHELLPATH=$(dirname "$0")
-
+IPADDRESS=$(curl -s4 icanhazip.com)
 #while [ -n "$(sudo lsof -i -s TCP:LISTEN -P -n | grep $RPCPORT)" ]
 #do
 #(( RPCPORT--))
@@ -66,6 +67,6 @@ docker build $SHELLPATH/Dockerfile --tag postarc/idena:latest
 
 cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
-echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT \
+echo -e "docker run -d --name $DOCKER_NAME  -p $IPADDRESS:$RPCPORT:$RPCPORT -p $IPADDRESS:$P2PPORT:$P2PPORT -p $IPADDRESS:$IPFSPORT:$IPFSPORT \
 -v $CURRENTDIR/data/$DOCKER_NAME:/root/.idena -w /root/.idena --restart unless-stopped --hostname idena \
 -it postarc/idena idena-go --config=/root/.idena/config.json" >> $START_SCRIPT
