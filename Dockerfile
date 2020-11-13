@@ -1,6 +1,6 @@
 FROM debian:stretch-slim
 #FROM ubuntu:16.10
-MAINTAINER Juha Kovanen <juha@particl.io>
+MAINTAINER postarc <postarc@nm.ru>
 
 ARG CONTAINER_TIMEZONE=Europe/Moscow
 ARG VERSION=0.23.1
