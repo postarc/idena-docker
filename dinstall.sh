@@ -63,11 +63,15 @@ sed -i "s/.*HTTPPort.*/   \x22HTTPPort\x22: $RPCPORT },/" $SHELLPATH/config.json
 sed -i "s/.*IpfsPort.*/   \x22IpfsPort\x22: $IPFSPORT },/" $SHELLPATH/config.json
 sed -i "s/.*ListenAddr.*/   \x22ListenAddr\x22: \x22: $P2PPORT\x22,/" $SHELLPATH/config.json
 
+
 if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else git clone $IDENAGO && cd $IDENAPATH; fi
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
 LATEST_TAG=${LATEST_TAG//v/}
 cd $CURRENTDIR
+
 sed -i "s/.*ARG VERSION=.*/ARG VERSION=${LATEST_TAG}/" $SHELLPATH/Dockerfile
+sed -i "s/.*EXPOSE.*/EXPOSE $P2PPORT $IPFSPORT $RPCPORT/" $SHELLPATH/Dockerfile
+
 if [ ! "$(docker images | grep postarc/idena)" ]; then 
      cd $SHELLPATH && docker build . --tag postarc/idena:latest
 fi
