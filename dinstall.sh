@@ -72,7 +72,7 @@ sed -i "s/.*ARG VERSION=.*/ARG VERSION=${LATEST_TAG}/" $SHELLPATH/Dockerfile
 sed -i "s/.*EXPOSE.*/EXPOSE $P2PPORT $IPFSPORT $RPCPORT/" $SHELLPATH/Dockerfile
 
 if [ ! "$(docker images | grep postarc/idena)" ]; then 
-     cd $SHELLPATH && docker build . --tag postarc/idena:latest
+     cd $SHELLPATH && docker build . --tag postarc/idena:latest --no-cache
 fi
 
 cd $CURRENTDIR
