@@ -34,7 +34,7 @@ VOLUME ["/root/.idena/"]
 
 RUN mkdir -p /opt/idena/bin \
     && cp -rf /root/idena/idena-go /opt/idena/bin/ \
-    && rm -rf /root/idena-go
+    && rm -rf /root/idena
 
 COPY config.json /root/.idena/config.json
 #COPY docker-entrypoint.sh /opt/idena/bin/entrypoint.sh 
