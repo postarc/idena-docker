@@ -5,7 +5,7 @@
    "MaxOutboundPeers": 6  },
 
   "RPC": {
-   "HTTPHost": "localhost",
+   "HTTPHost": "idena",
    "HTTPPort": 9009 },
 
   "Ipfsconf": {
