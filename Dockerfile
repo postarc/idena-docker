@@ -44,5 +44,5 @@ RUN chmod +x /opt/idena/bin/*
 
 #EXPOSE 40403 40404 9009
 
-ENTRYPOINT ["idena-go"]
-CMD ["--config=/root/.idena/config.json"]
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["idena"]
