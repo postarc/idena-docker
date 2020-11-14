@@ -45,5 +45,6 @@ RUN chmod +x /opt/idena/bin/*
 #EXPOSE 40403 40404 9009
 
 #ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["idena-go --datadir /root/.idena/config.json"]
+ENTRYPOINT ["idena-go"]
+CMD ["--datadir", "/root/.idena/config.json"]
 #
