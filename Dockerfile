@@ -3,6 +3,7 @@ MAINTAINER postarc <postarc@nm.ru>
 
 ARG CONTAINER_TIMEZONE=Europe/Moscow
 ARG VERSION=0.23.1
+#ARG DOCKERNAME=idena
 
 ENV PATH=/opt/particl-${PARTICL_VERSION}/bin:$PATH
 
