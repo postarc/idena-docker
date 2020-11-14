@@ -46,5 +46,5 @@ RUN chmod +x /opt/idena/bin/*
 
 #ENTRYPOINT ["docker-entrypoint.sh"]
 ENTRYPOINT ["idena-go"]
-CMD ["--datadir", "/root/.idena/", "--config", "/root/.idena/config.json"]
+CMD ["--datadir", "/root/.idena/", "--config", "/opt/idena/bin/config.json"]
 #
