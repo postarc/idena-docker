@@ -2,8 +2,8 @@
 
 set -e
 
-if [[ "$1" = "idena" ]]; then
-      set -- "$@" --datadir "/root/.idena" --verbosity 3 --rpcaddr idena
+if [[ "$1" = "idena-go" ]]; then
+      set -- "$@"  --datadir "/root/.idena" --verbosity 3 --rpcaddr idena --config "/root/.idena/config.json"
       exec "$@"
 fi
 
