@@ -44,20 +44,24 @@ apt update
 apt install -y docker.io
 
 echo -n -e "${YELLOW}Input Docker Container Name [default:$DOCKERNAME]:${NC}"
-#read DOCKERNAME
+read DOCKERNAME
 if [ -z $DOCKERNAME ]; then DOCKERNAME=idena; fi
 echo -n -e "${YELLOW}Input RPC port number [default: $RPCPORT]:${NC}"
-#read ANSWER
+read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=9009 ; fi
-#RPCPORT=$ANSWER
+RPCPORT=$ANSWER
 echo -n -e "${YELLOW}Input P2P port number [default: $P2PPORT]:${NC}"
-#read ANSWER
+read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40404 ; fi
-#P2PPORT=$ANSWER
+P2PPORT=$ANSWER
 echo -n -e "${YELLOW}Input IPFS port number [default: $IPFSPORT]:${NC}"
-#read ANSWER
+read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40405 ; fi
-#IPFSPORT=$ANSWER
+IPFSPORT=$ANSWER
+
+sed -i "s/.*HTTPPort.*/   "HTTPPort": $RPCPORT },/" $SHELLPATH/config.json
+sed -i "s/.*IpfsPort.*/   "IpfsPort": $IPFSPORT },/" $SHELLPATH/config.json
+sed -i "s/.*ListenAddr.*/   "ListenAddr": ": $P2PPORT",/" $SHELLPATH/config.json
 
 if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else git clone $IDENAGO && cd $IDENAPATH; fi
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
