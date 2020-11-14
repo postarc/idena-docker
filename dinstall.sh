@@ -59,9 +59,9 @@ read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=40405 ; fi
 IPFSPORT=$ANSWER
 
-sed -i "s/.*HTTPPort.*/   "HTTPPort": $RPCPORT },/" $SHELLPATH/config.json
-sed -i "s/.*IpfsPort.*/   "IpfsPort": $IPFSPORT },/" $SHELLPATH/config.json
-sed -i "s/.*ListenAddr.*/   "ListenAddr": ": $P2PPORT",/" $SHELLPATH/config.json
+sed -i "s/.*HTTPPort.*/   \x22HTTPPort\x22: $RPCPORT },/" $SHELLPATH/config.json
+sed -i "s/.*IpfsPort.*/   \x22IpfsPort\x22: $IPFSPORT },/" $SHELLPATH/config.json
+sed -i "s/.*ListenAddr.*/   \x22ListenAddr\x22: \x22: $P2PPORT\x22,/" $SHELLPATH/config.json
 
 if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else git clone $IDENAGO && cd $IDENAPATH; fi
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
