@@ -64,7 +64,7 @@ LATEST_TAG=${LATEST_TAG//v/}
 cd $CURRENTDIR
 sed -i "s/.*ARG VERSION=.*/ARG VERSION=${LATEST_TAG}/" $SHELLPATH/Dockerfile
 if [ ! "$(docker images | grep postarc/idena)" ]; then 
-     cd $SHELLPATH && docker build ./ --tag postarc/idena:latest
+     cd $SHELLPATH && docker build . --tag postarc/idena:latest
 fi
 
 cd $CURRENTDIR
