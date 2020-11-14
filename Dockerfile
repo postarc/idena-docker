@@ -43,7 +43,7 @@ COPY config.json /opt/idena/bin/config.json
 ENV PATH="/opt/idena/bin:${PATH}"
 RUN chmod +x /opt/idena/bin/*
 
-#EXPOSE 40403 40404 9009
+EXPOSE 40403 40404 9009
 
 #ENTRYPOINT ["docker-entrypoint.sh"]
 ENTRYPOINT ["idena-go"]
