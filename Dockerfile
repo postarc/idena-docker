@@ -30,13 +30,13 @@ RUN cd /root \
         && cp -rf idena-node-linux-${VERSION} idena-go;
 
 RUN mkdir /root/.idena/
+COPY config.json /root/.idena/config.json
 VOLUME ["/root/.idena/"]
 
 RUN mkdir -p /opt/idena/bin \
     && cp -rf /root/idena/idena-go /opt/idena/bin/ \
     && rm -rf /root/idena
 
-COPY config.json /root/.idena/config.json
 COPY docker-entrypoint.sh /opt/idena/bin/entrypoint.sh 
 
 ENV PATH="/opt/idena/bin:${PATH}"
@@ -45,5 +45,5 @@ RUN chmod +x /opt/idena/bin/*
 #EXPOSE 40403 40404 9009
 
 #ENTRYPOINT ["docker-entrypoint.sh"]
-CMD ["idena-go"]
+CMD ["idena-go --datadir /root/"]
 #
