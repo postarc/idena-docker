@@ -63,7 +63,9 @@ LATEST_TAG=$(git tag --sort=-creatordate | head -1)
 LATEST_TAG=${LATEST_TAG//v/}
 cd $CURRENTDIR
 sed -i "s/.*ARG VERSION=.*/ARG VERSION=${LATEST_TAG}/" $SHELLPATH/Dockerfile
-if [ ! "$(docker images | grep postarc/idena)" ]; then docker build $SHELLPATH/ --tag postarc/idena:latest; fi
+if [ ! "$(docker images | grep postarc/idena)" ]; then 
+     cd $SHELLPATH && docker build ./ --tag postarc/idena:latest
+fi
 
 cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
