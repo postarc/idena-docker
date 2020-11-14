@@ -40,9 +40,6 @@ IPADDRESS=$(curl -s4 icanhazip.com)
 #(( P2PPORT++))
 #done
 
-apt update
-apt install -y docker.io
-
 echo -n -e "${YELLOW}Input Docker Container Name [default:$DOCKERNAME]:${NC}"
 read DOCKERNAME
 if [ -z $DOCKERNAME ]; then DOCKERNAME=idena; fi
@@ -63,6 +60,8 @@ sed -i "s/.*HTTPPort.*/   \x22HTTPPort\x22: $RPCPORT },/" $SHELLPATH/config.json
 sed -i "s/.*IpfsPort.*/   \x22IpfsPort\x22: $IPFSPORT },/" $SHELLPATH/config.json
 sed -i "s/.*ListenAddr.*/   \x22ListenAddr\x22: \x22: $P2PPORT\x22,/" $SHELLPATH/config.json
 
+apt update
+apt install -y docker.io
 
 if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else git clone $IDENAGO && cd $IDENAPATH; fi
 LATEST_TAG=$(git tag --sort=-creatordate | head -1)
