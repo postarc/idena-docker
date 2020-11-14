@@ -45,4 +45,5 @@ RUN chmod +x /opt/idena/bin/*
 #EXPOSE 40403 40404 9009
 
 ENTRYPOINT ["idena-go"]
-CMD ["--datadir "/root/.idena" --verbosity 3 --rpcaddr idena --config /root/.idena/config.json"]
+CMD ["--datadir=/root/.idena --verbosity 3 --rpcaddr idena --config=/root/.idena/config.json"]
+#
