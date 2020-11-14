@@ -37,6 +37,7 @@ RUN mkdir -p /opt/idena/bin \
     && rm -rf /root/idena-go
 
 COPY config.json /root/.idena/config.json
+COPY docker-entrypoint.sh /opt/idena/bin/entrypoint.sh 
 
 ENV PATH="/opt/idena/bin:${PATH}"
 RUN chmod +x /opt/idena/bin/*
