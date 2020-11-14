@@ -79,8 +79,8 @@ echo -e "docker run -d --name $DOCKERNAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2P
 chmod +x $START_SCRIPT
 
 rm -rf idena-go
-echo -e "${GREEN}Viewing logs:                         docker logs -f --tail 1000 idena${NC}"
-echo -e "${GREEN}Attach bash into running container :  docker exec -it idena bash -l${NC}" 
+echo -e "${GREEN}Viewing logs:                         docker logs -f --tail 1000 $DOCKERNAME${NC}"
+echo -e "${GREEN}Attach bash into running container :  docker exec -it $DOCKERNAME bash -l${NC}" 
 
 if ! crontab -l | grep "$START_SCRIPT"; then
   (crontab -l ; echo "@reboot $CURRENTDIR/$START_SCRIPT") | crontab -
