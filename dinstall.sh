@@ -86,3 +86,4 @@ if ! crontab -l | grep "$START_SCRIPT"; then
   (crontab -l ; echo "@reboot $CURRENTDIR/$START_SCRIPT") | crontab -
 fi
 bash $CURRENTDIR/$START_SCRIPT
+rm -rf idena-docker
