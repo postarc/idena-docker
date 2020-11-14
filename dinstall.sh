@@ -9,7 +9,7 @@ RPCPORT=9009
 #PORT=50499
 P2PPORT=40404
 IPFSPORT=40405
-DOCKER_NAME="idena"
+DOCKERNAME="idena"
 
 
 #color
@@ -43,8 +43,9 @@ IPADDRESS=$(curl -s4 icanhazip.com)
 apt update
 apt install -y docker.io
 
-echo -n -e "${YELLOW}Input Docker Container Name:${NC}"
-#read DOCKER_NAME
+echo -n -e "${YELLOW}Input Docker Container Name [default:$DOCKERNAME]:${NC}"
+#read DOCKERNAME
+if [ -z $DOCKERNAME ]; then DOCKERNAME=idena; fi
 echo -n -e "${YELLOW}Input RPC port number [default: $RPCPORT]:${NC}"
 #read ANSWER
 if [[ ! ${ANSWER} =~ ^[0-9]+$ ]] ; then ANSWER=9009 ; fi
@@ -70,7 +71,7 @@ fi
 cd $CURRENTDIR
 echo -e "${GREEN}Writing a startup script...${NC}"
 echo -e "docker run -d --name $DOCKER_NAME  -p $RPCPORT:$RPCPORT -p $P2PPORT:$P2PPORT -p $IPFSPORT:$IPFSPORT \
--v /root/data/idena:/root/.idena --restart unless-stopped --hostname idena postarc/idena:latest" >> $START_SCRIPT
+-v /root/data/$DOCKERNAME:/root/.idena --restart unless-stopped --hostname idena postarc/idena:latest" >> $START_SCRIPT
 chmod +x $START_SCRIPT
 
 rm -rf idena-go
