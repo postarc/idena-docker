@@ -72,7 +72,7 @@ sed -i "s/.*ARG VERSION=.*/ARG VERSION=${LATEST_TAG}/" $SHELLPATH/Dockerfile
 sed -i "s/.*EXPOSE.*/EXPOSE $P2PPORT $IPFSPORT $RPCPORT/" $SHELLPATH/Dockerfile
 
 if [ ! "$(docker images | grep postarc/idena)" ]; then 
-     cd $SHELLPATH && docker build . --tag postarc/idena:latest --no-cache
+     cd $SHELLPATH && sudo docker build . --tag postarc/idena:latest --no-cache
 fi
 
 cd $CURRENTDIR
@@ -85,8 +85,8 @@ rm -rf idena-go
 echo -e "${GREEN}Viewing logs:                         docker logs -f --tail 1000 $DOCKERNAME${NC}"
 echo -e "${GREEN}Attach bash into running container :  docker exec -it $DOCKERNAME bash -l${NC}" 
 
-if ! crontab -l | grep "$START_SCRIPT"; then
-  (crontab -l ; echo "@reboot $CURRENTDIR/$START_SCRIPT") | crontab -
+if ! sudo crontab -l | grep "$START_SCRIPT"; then
+  (sudo crontab -l ; echo "@reboot $CURRENTDIR/$START_SCRIPT") | sudo crontab -
 fi
 bash $CURRENTDIR/$START_SCRIPT
 rm -rf idena-docker
