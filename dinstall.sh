@@ -64,7 +64,7 @@ apt update
 apt install -y docker.io
 
 if [ -d $IDENAPATH ]; then cd $IDENAPATH && git fetch; else git clone $IDENAGO && cd $IDENAPATH; fi
-LATEST_TAG=$(git tag --sort=-creatordate | head -1)
+LATEST_TAG=$(git tag -l | sort -V | tail -n 1)
 LATEST_TAG=${LATEST_TAG//v/}
 cd $CURRENTDIR
 
